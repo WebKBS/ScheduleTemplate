@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/drag.js" defer></script>
+    <script src="./js/elementChangeDrag.js" defer></script>
   </head>
   <body>
     <div class="schedule">
@@ -29,18 +30,34 @@
       </div>
       <div class="body">
         <div class="inner">
-          <div class="left_box">
-            <div>
+          <div class="left_box" id="list">
+            <div class="draggable">
               <p>Research</p>
+              <p class="sub_text">
+                <span class="date">2000.02.02</span>
+                <span class="time">12:10:44</span>
+              </p>
             </div>
-            <div>
+            <div class="draggable">
               <p>Phase 2.6 QA</p>
+              <p class="sub_text">
+                <span class="date">2000.02.02</span>
+                <span class="time">12:10:44</span>
+              </p>
             </div>
-            <div>
+            <div class="draggable">
               <p>UI Design</p>
+              <p class="sub_text">
+                <span class="date">2000.02.02</span>
+                <span class="time">12:10:44</span>
+              </p>
             </div>
-            <div>
+            <div class="draggable">
               <p>Development</p>
+              <p class="sub_text">
+                <span class="date">2000.02.02</span>
+                <span class="time">12:10:44</span>
+              </p>
             </div>
           </div>
           <div class="right_box">
@@ -123,6 +140,19 @@
                   <div class="percent">60%</div>
                 </div>
               </div>
+            </div>
+            <div class="time_wrap">
+              <p>9:00</p>
+              <p>10:00</p>
+              <p>11:00</p>
+              <p>12:00</p>
+              <p>13:00</p>
+              <p>14:00</p>
+              <p>15:00</p>
+              <p>16:00</p>
+              <p>17:00</p>
+              <p>18:00</p>
+              <p>19:00</p>
             </div>
           </div>
         </div>

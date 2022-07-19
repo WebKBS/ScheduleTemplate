@@ -19,6 +19,11 @@ a{
   text-decoration: none;
 }
 
+.draggable{
+  user-select: none;
+  cursor: grab;
+}
+
 .schedule{
   font-family: 'Poppins', sans-serif;
   max-width: 1000px;
@@ -86,22 +91,36 @@ a{
     .left_box{
       display: flex;
       flex-direction: column;
+      padding-right: 30px;
 
       > div{
         display: flex;
-        align-items: center;
+        // align-items: center;
         height: 75px;
         font-size: 1.25rem;
         font-weight: 500;
+        flex-direction: column;
+        justify-content: center;
 
         p{
           padding: 5px;
+        }
+
+        .sub_text{
+          color: #bbb;
+          font-size: 0.9rem;
+          padding: 0 5px;
+          
+          
         }
       }
     }
 
     .right_box{
       width: 100%;
+      overflow-x: auto;
+      position: relative;
+      padding-bottom: 20px;
 
       > div{
         height: 75px;
@@ -148,6 +167,7 @@ a{
         top: 0;
         left: 0;
         height: 100%;
+        cursor: pointer;
       }
 
       .progress_in{
@@ -167,7 +187,32 @@ a{
         }
 
       }
-      
+     
+      .time_wrap{
+        display: flex;
+        position: absolute;
+        bottom: 10px;
+        left: 100px;
+        height: auto;
+        gap: 20px;
+        
+        p{
+          width: 100px;
+          color: #999;
+          position: relative;
+          
+          &::after{
+            content: "";
+            display: block;
+            border-right: 1px dashed #ccc;
+            height: 300px;
+            position: absolute;
+            top: -310px;
+            left: 0;
+            z-index: -1;
+          }
+        }
+      }
     }
   }
 
@@ -198,6 +243,6 @@ a{
     top: 50%;
     right: -14px;
     transform: translateY(-50%);
-    cursor: pointer;
+    cursor: col-resize;
   }
 }
