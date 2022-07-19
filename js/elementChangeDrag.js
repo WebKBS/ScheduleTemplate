@@ -2,6 +2,8 @@
 let draggingEle;
 let placeholder;
 let isDraggingStarted = false;
+const eleParent = document.querySelector('.left_box');
+let eleParentHeight = eleParent.offsetHeight;
 
 let y = 0;
 const mouseDownHandler = function (e) {
@@ -10,7 +12,9 @@ const mouseDownHandler = function (e) {
 
   const rect = draggingEle.getBoundingClientRect();
 
-  y = e.pageY - rect.top;
+  y = parseInt(e.pageY - rect.top);
+
+  // console.log(y);
 
   document.addEventListener('mousemove', mouseMoveHandler);
   document.addEventListener('mouseup', mouseUpHandler);
@@ -22,10 +26,18 @@ const mouseDownHandler = function (e) {
 const mouseMoveHandler = function (e) {
   const draggingRect = draggingEle.getBoundingClientRect();
 
+  // 엘레먼트 높이 값
   draggingEle.style.position = 'absolute';
   draggingEle.style.top = `${e.pageY - y}px`;
 
   // console.log(draggingRect);
+
+  // 박스 높이를 넘어 갈수 없음
+  if (e.pageY > eleParentHeight) {
+    draggingEle.style.top = eleParentHeight - 10 + 'px';
+  }
+
+  // console.log(e.pageY);
 
   if (!isDraggingStarted) {
     isDraggingStarted = true;
@@ -42,9 +54,11 @@ const mouseMoveHandler = function (e) {
 
   const prevEle = draggingEle.previousElementSibling;
   const nextEle = placeholder.nextElementSibling;
+
   if (prevEle && isAbove(draggingEle, prevEle)) {
     swap(placeholder, draggingEle);
     swap(placeholder, prevEle);
+
     return;
   }
 
@@ -56,7 +70,9 @@ const mouseMoveHandler = function (e) {
 
 /* 마우스 업 핸들러 이벤트 삭제 */
 const mouseUpHandler = function () {
-  if (document.querySelector('.placeholder') != null) placeholder && placeholder.parentNode.removeChild(placeholder);
+  //에러 방지 코드 자식 요소가 없으면 에러 발생 no!
+  if (document.querySelector('.placeholder') !== null) placeholder && placeholder.parentNode.removeChild(placeholder);
+
   isDraggingStarted = false;
 
   draggingEle.style.removeProperty('top');
