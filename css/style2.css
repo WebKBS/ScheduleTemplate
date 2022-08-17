@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: auto;
+  height: 100%;
+}
+
+html {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+}
+
+.draggable {
+  user-select: none;
+  cursor: grab;
+}
+
+.schedule {
+  font-family: "Poppins", sans-serif;
+  max-width: 1000px;
+  background-color: rgba(248, 246, 242, 0.3);
+  border-radius: 0.95rem;
+  border: 1px dashed #e8e5dd;
+  user-select: none;
+}
+.schedule .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 70px;
+  padding: 1.25rem 2.25rem 0;
+}
+.schedule .title_wrap {
+  margin: 0.5rem;
+  margin-left: 0;
+}
+.schedule .title_wrap .title {
+  font-size: 1.275rem;
+  font-weight: 600;
+}
+.schedule .title_wrap .sub_text {
+  font-size: 1.075rem;
+  color: #b5b0a1;
+  font-weight: 500;
+  padding-top: 0.5rem;
+}
+.schedule .tab_wrap {
+  display: flex;
+  margin: 0.5rem 0;
+  align-items: center;
+}
+.schedule .tab_wrap p a {
+  font-weight: 600;
+  font-size: 0.925rem;
+  color: #8e887a;
+  padding: calc(0.55rem + 1px) calc(1.25rem + 1px);
+  border-radius: 0.95rem;
+}
+.schedule .tab_wrap p.on a {
+  background-color: #f8f6f2;
+}
+.schedule .body {
+  padding: 2rem 2.25rem;
+}
+.schedule .body .inner {
+  padding-bottom: 2.5rem;
+  display: flex;
+}
+.schedule .body .left_box {
+  display: flex;
+  flex-direction: column;
+  padding-right: 30px;
+  position: relative;
+}
+.schedule .body .left_box > div {
+  display: flex;
+  height: 75px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  flex-direction: column;
+  justify-content: center;
+}
+.schedule .body .left_box > div p {
+  padding: 5px;
+}
+.schedule .body .left_box > div .sub_text {
+  color: #bbb;
+  font-size: 0.9rem;
+  padding: 0 5px;
+}
+.schedule .body .right_box {
+  width: 100%;
+  overflow-x: auto;
+  position: relative;
+  padding-bottom: 20px;
+}
+.schedule .body .right_box > div {
+  height: 75px;
+  position: relative;
+}
+.schedule .body .right_box .card_bar {
+  width: 300px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 100px;
+  display: flex;
+  background-color: #ddf8fc;
+  border-radius: 60px;
+  padding: 0.5rem;
+}
+.schedule .body .right_box .progress {
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.schedule .body .right_box .progress a {
+  color: #fff;
+  font-weight: 500;
+}
+.schedule .body .right_box .progress a:hover {
+  color: #222;
+  transition: all 0.3s;
+}
+.schedule .body .right_box .background {
+  width: 200px;
+  border-radius: 60px;
+  background-color: #4fc9da;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+.schedule .body .right_box .progress_in {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 0.75rem;
+}
+.schedule .body .right_box .progress_in .img_wrap {
+  width: 29px;
+  height: 29px;
+  border: 2px solid #fff;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-left: -10px;
+}
+.schedule .body .right_box .time_wrap {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 100px;
+  height: auto;
+  gap: 20px;
+}
+.schedule .body .right_box .time_wrap p {
+  width: 100px;
+  color: #999;
+  position: relative;
+}
+.schedule .body .right_box .time_wrap p::after {
+  content: "";
+  display: block;
+  border-right: 1px dashed #ccc;
+  height: 300px;
+  position: absolute;
+  top: -310px;
+  left: 0;
+  z-index: -1;
+}
+.schedule .percent_wrap {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+.schedule .percent_wrap .percent {
+  padding: 0 0.75rem;
+  font-weight: 600;
+  border-radius: 50rem;
+  background-color: #fff;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+.schedule .select {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #7dc6f7;
+  position: absolute;
+  top: 50%;
+  right: -14px;
+  transform: translateY(-50%);
+  cursor: col-resize;
+}
+
+.bg-success {
+  background: #0effd7 !important;
+}
+
+.bg-danger {
+  background: #81aa21 !important;
+}
+
+.bg-info {
+  background-color: #5e5cff !important;
+}
+
+/*# sourceMappingURL=style2.css.map */
