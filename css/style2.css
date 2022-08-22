@@ -105,6 +105,9 @@ a {
   padding-bottom: 20px;
 }
 .schedule .body .right_box > div {
+  position: relative;
+}
+.schedule .body .right_box > div > div {
   height: 75px;
   position: relative;
 }

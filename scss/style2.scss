@@ -121,6 +121,10 @@ a {
       padding-bottom: 20px;
 
       > div {
+        position: relative;
+      }
+
+      > div > div {
         height: 75px;
         position: relative;
       }

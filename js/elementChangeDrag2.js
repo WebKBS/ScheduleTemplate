@@ -1,7 +1,9 @@
 'use-strict';
 let draggingEle;
 let placeholder;
+let placeholder2;
 let isDraggingStarted = false;
+let isDraggingStarted2 = false;
 const eleParent = document.querySelector('.left_box');
 let eleParentHeight = eleParent.offsetHeight;
 let cardElement;
@@ -20,11 +22,8 @@ const mouseDownHandler = function (e) {
 
   const rect = draggingEle.offsetTop;
   const rectCard = cardElement.offsetTop;
-  console.log(rect);
   y = parseInt(e.pageY - rect);
-  console.log(e.pageY);
   cardY = parseInt(e.pageY - rectCard);
-  console.log(e.pageY);
   // console.log(y);
   // console.log(cardY);
 
@@ -35,8 +34,7 @@ const mouseDownHandler = function (e) {
 /* 마우스 무브 핸들러 */
 const mouseMoveHandler = function (e) {
   const draggingRect = draggingEle.offsetTop;
-  const cardRect = cardElement.getBoundingClientRect();
-
+  console.log(draggingRect);
   // 엘레먼트 높이 값
   draggingEle.style.position = 'absolute';
   draggingEle.style.top = `${e.pageY - y}px`;
@@ -61,7 +59,9 @@ const mouseMoveHandler = function (e) {
     isDraggingStarted = true;
 
     placeholder = document.createElement('div');
+
     placeholder.classList.add('placeholder');
+
     draggingEle.parentNode.insertBefore(placeholder, draggingEle.nextSibling);
 
     /* 이동 위치 백그라운드 스타일 */
@@ -70,9 +70,29 @@ const mouseMoveHandler = function (e) {
     placeholder.style.border = '1px dashed #999';
   }
 
+  if (!isDraggingStarted2) {
+    isDraggingStarted2 = true;
+
+    placeholder2 = document.createElement('div');
+
+    placeholder2.classList.add('placeholder');
+
+    cardElement.parentNode.insertBefore(placeholder2, cardElement.nextSibling);
+
+    /* 이동 위치 백그라운드 스타일 */
+
+    placeholder2.style.width = `${draggingRect.width}px`;
+    placeholder2.style.height = `${draggingRect.height}px`;
+    // placeholder2.style.border = '1px dashed #999';
+  }
+
   const prevEle = draggingEle.previousElementSibling;
   const nextEle = placeholder.nextElementSibling;
 
+  const prevEle2 = cardElement.previousElementSibling;
+  const nextEle2 = placeholder2.nextElementSibling;
+
+  // 드래그 엘리먼트
   if (prevEle && isAbove(draggingEle, prevEle)) {
     swap(placeholder, draggingEle);
     swap(placeholder, prevEle);
@@ -84,6 +104,19 @@ const mouseMoveHandler = function (e) {
     swap(nextEle, placeholder);
     swap(nextEle, draggingEle);
   }
+
+  /* 카드 엘리먼트 */
+  if (prevEle2 && isAbove(cardElement, prevEle2)) {
+    swap(placeholder2, cardElement);
+    swap(placeholder2, prevEle2);
+
+    return;
+  }
+
+  if (nextEle2 && isAbove(nextEle2, cardElement)) {
+    swap(nextEle2, placeholder2);
+    swap(nextEle2, cardElement);
+  }
 };
 
 /* 마우스 업 핸들러 이벤트 삭제 */
@@ -91,7 +124,10 @@ const mouseUpHandler = function () {
   //에러 방지 코드 자식 요소가 없으면 에러 발생 no!
   if (document.querySelector('.placeholder') !== null) placeholder && placeholder.parentNode.removeChild(placeholder);
 
+  placeholder2 && placeholder2.parentNode.removeChild(placeholder2);
+
   isDraggingStarted = false;
+  isDraggingStarted2 = false;
 
   draggingEle.style.removeProperty('top');
   draggingEle.style.removeProperty('position');
@@ -102,6 +138,7 @@ const mouseUpHandler = function () {
 
   y = null;
   draggingEle = null;
+
   cardY = null;
   cardElement = null;
 
@@ -111,6 +148,7 @@ const mouseUpHandler = function () {
 
 //상위 부모
 const list = document.getElementById('list');
+const card = document.getElementById('card');
 
 /* 마우스 다운 이벤트 리스너 */
 [].slice.call(list.querySelectorAll('.draggable')).forEach(function (item) {
